@@ -5,13 +5,14 @@
 // Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
-
 #[test]
 fn main() {
     let vec0 = vec![22, 44, 66];
 
-    let vec1 = fill_vec(vec0);
+    let vec1 = fill_vec(vec0.clone());
+    let vec2 = fill_vec2(&vec1);
+
+	dbg!(vec2);
 
     assert_eq!(vec0, vec![22, 44, 66]);
     assert_eq!(vec1, vec![22, 44, 66, 88]);
@@ -19,6 +20,14 @@ fn main() {
 
 fn fill_vec(vec: Vec<i32>) -> Vec<i32> {
     let mut vec = vec;
+
+    vec.push(88);
+
+    vec
+}
+
+fn fill_vec2(vec: &Vec<i32>) -> Vec<i32> {
+    let mut vec = vec.clone();
 
     vec.push(88);
 
